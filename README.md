@@ -74,7 +74,7 @@ Recommended dark themes:
 Clone this repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/space-command-deck.git
+git clone https://github.com/YOUR_USERNAME/starship-space-theme.git
 cd space-command-deck
 ```
 
