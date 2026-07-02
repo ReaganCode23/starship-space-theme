@@ -6,13 +6,6 @@ Space Command Deck is designed for developers who want a sci-fi terminal prompt 
 
 ![Space Command Deck preview](screenshots/preview.png)
 
-## Preview
-
-```text
-   rpx/api   main ✦2 ?1  🪐  22.0.0 󰏗 1.0.0       orbit 21:42
-❯
-```
-
 ## Features
 
 * Compact space / mission-control inspired prompt
