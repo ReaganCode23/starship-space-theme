@@ -1,0 +1,207 @@
+# ============================================================
+# Celestial Command Deck - Compact
+# Space / planet / mission-control Starship prompt preset
+#
+# Goals:
+# - Short enough for normal terminal widths
+# - Strong space-themed colors
+# - Clean path display
+# - Fedora/OS icon as its own block
+# - Git + core dev tools only
+# ============================================================
+
+add_newline = true
+command_timeout = 1000
+palette = "celestial_void"
+
+format = """
+[](fg:os_bg)$os[](fg:os_bg bg:deck)$directory[](fg:deck bg:orbit)$git_branch$git_status[](fg:orbit bg:planet)[ 🪐 ](fg:gold bg:planet bold)$nodejs$python$package[](fg:planet)$fill$cmd_duration$time
+$character"""
+
+[palettes.celestial_void]
+# Background blocks: blue → navy → indigo → violet
+os_bg = "#2563eb"
+deck = "#0f172a"
+orbit = "#312e81"
+planet = "#581c87"
+
+# Accent colors
+ice = "#93c5fd"
+cyan = "#67e8f9"
+violet = "#c084fc"
+magenta = "#f0abfc"
+gold = "#facc15"
+green = "#34d399"
+red = "#fb7185"
+white = "#e5e7eb"
+muted = "#94a3b8"
+
+[fill]
+symbol = " "
+style = "fg:muted"
+
+# ----------------------------
+# OS block
+# ----------------------------
+
+[os]
+disabled = false
+style = "fg:white bg:os_bg bold"
+format = "[ $symbol ]($style)"
+
+[os.symbols]
+Fedora = ""
+Linux = ""
+Arch = ""
+Ubuntu = ""
+Pop = ""
+Macos = ""
+Windows = "󰍲"
+Debian = ""
+NixOS = ""
+Alpine = ""
+
+# ----------------------------
+# Directory block
+# ----------------------------
+
+[directory]
+style = "fg:ice bg:deck bold"
+read_only = " 󰌾"
+read_only_style = "fg:red bg:deck bold"
+truncation_length = 2
+truncate_to_repo = true
+format = "[ $path]($style)[$read_only]($read_only_style)[ ](bg:deck)"
+
+[directory.substitutions]
+"~" = ""
+"Desktop" = ""
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = ""
+"Pictures" = ""
+"Videos" = ""
+"Projects" = ""
+"Code" = ""
+"code" = ""
+"src" = ""
+"dev" = ""
+"repos" = ""
+"workspace" = ""
+
+# ----------------------------
+# Git orbit block
+# ----------------------------
+
+[git_branch]
+symbol = " "
+style = "fg:violet bg:orbit bold"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "fg:magenta bg:orbit bold"
+format = "[$all_status$ahead_behind ]($style)"
+
+conflicted = "⚔${count} "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+up_to_date = ""
+untracked = "?${count} "
+stashed = "📦${count} "
+modified = "✦${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘${count} "
+
+# ----------------------------
+# Planet/tools block
+# ----------------------------
+
+[nodejs]
+symbol = " "
+style = "fg:green bg:planet bold"
+format = "[ $symbol$version ]($style)"
+
+[python]
+symbol = " "
+style = "fg:gold bg:planet bold"
+format = "[ $symbol$version ]($style)"
+
+[package]
+symbol = "󰏗 "
+style = "fg:violet bg:planet bold"
+format = "[ $symbol$version ]($style)"
+
+# ----------------------------
+# Disabled modules for compact mode
+# ----------------------------
+
+[shell]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[terraform]
+disabled = true
+
+[jobs]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[battery]
+disabled = true
+
+[status]
+disabled = true
+
+# ----------------------------
+# Right-side mission info
+# ----------------------------
+
+[cmd_duration]
+min_time = 1500
+style = "fg:gold bold"
+format = "[ burn $duration ]($style)"
+
+[time]
+disabled = false
+style = "fg:cyan bold"
+time_format = "%H:%M"
+format = "[ orbit $time ]($style)"
+
+# ----------------------------
+# Prompt character
+# ----------------------------
+
+[character]
+success_symbol = "[❯](bold fg:green)"
+error_symbol = "[❯](bold fg:red)"
+vimcmd_symbol = "[❮](bold fg:violet)"
+vimcmd_replace_one_symbol = "[❮](bold fg:gold)"
+vimcmd_replace_symbol = "[❮](bold fg:gold)"
+vimcmd_visual_symbol = "[❮](bold fg:cyan)"
